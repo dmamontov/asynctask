@@ -42,14 +42,15 @@
  */
 
  /**
- * AsyncTask - The main class
+ * AsyncTask enables proper and easy use of the thread. This class allows to perform background operations and publish results on the thread without having to manipulate threads and/or handlers.
  *
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version   Release: @package_version@
- * @link      https://github.com/dmamontov/asynctask/blob/master/AsyncTask.php
+ * @version   Release: 1.0.0
+ * @link      https://github.com/dmamontov/asynctask
  * @since     Class available since Release 1.0.0
+ * @todo      Planned to write a method publishProgress
  * @abstract
  */
 
@@ -57,12 +58,15 @@ abstract class AsyncTask
 {
     /**
      * A numeric shared memory segment ID
+     * @var integer
      * @static
      */
     private static $shmId;
 
+
     /**
      * Creates a new asynchronous task
+     * @return void
      * @access public
      * @final
      */
@@ -96,6 +100,7 @@ abstract class AsyncTask
 
     /**
      * Finish create an asynchronous task
+     * @return void
      * @access public
      * @final
      */
@@ -111,7 +116,7 @@ abstract class AsyncTask
 
     /**
      * Returns the variable with the given key
-     * @param $key string
+     * @param string $key
      * @return mixed
      * @access public
      * @static
@@ -131,9 +136,9 @@ abstract class AsyncTask
 
     /**
      * Inserts or updates a variable with the given key
-     * @param $key string
-     * @param $value string
-     * @return bool
+     * @param string $key
+     * @param string $value
+     * @return boolean
      * @access public
      * @static
      * @final
@@ -150,8 +155,8 @@ abstract class AsyncTask
 
     /**
      * Returns a unique integer identifier for a given key
-     * @param $key string
-     * @return int
+     * @param string $key
+     * @return integer
      * @access private
      * @static
      * @final
@@ -168,7 +173,8 @@ abstract class AsyncTask
 
     /**
      * Executes the task with the specified parameters
-     * @param $parameters mixed
+     * @param mixed $parameters
+     * @return void
      * @access public
      * @final
      */
@@ -197,7 +203,7 @@ abstract class AsyncTask
 
     /**
      * Attempts to cancel execution of this task
-     * @return bool
+     * @return boolean
      * @access public
      * @final
      */
@@ -232,7 +238,7 @@ abstract class AsyncTask
 
     /**
      * Returns true if this task was cancelled before it completed normally
-     * @return bool
+     * @return boolean
      * @access public
      * @final
      */
@@ -243,6 +249,7 @@ abstract class AsyncTask
 
     /**
      * Runs on the thread before doInBackground($parameters)
+     * @return void
      * @access protected
      */
     protected function onPreExecute()
@@ -251,7 +258,7 @@ abstract class AsyncTask
 
     /**
      * Override this method to perform a computation on a background thread
-     * @param $parameters mixed
+     * @param mixed $parameters
      * @return mixed
      * @access protected
      * @abstract
@@ -260,7 +267,8 @@ abstract class AsyncTask
 
     /**
      * Runs on the thread after doInBackground($parameters)
-     * @param $result mixed
+     * @param mixed $result
+     * @return void
      * @access protected
      */
     protected function onPostExecute($result)
@@ -269,6 +277,7 @@ abstract class AsyncTask
 
     /**
      * Runs on the thread after cancel()
+     * @return void
      * @access protected
      */
     protected function onCancelled()
