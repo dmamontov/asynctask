@@ -133,7 +133,7 @@ abstract class AsyncTask
      * Inserts or updates a variable with the given key
      * @param $key string
      * @param $value string
-     * @return mixed
+     * @return bool
      * @access public
      * @static
      * @final
