@@ -1,7 +1,7 @@
 AsyncTask 1.0.0
 ===============
 
-AsyncTask enables proper and easy use of the thread. This class allows to perform background operations and publish results on the thread without having to manipulate threads and/or handlers. [More information](https://dmamontov.github.io/asynctask)
+AsyncTask enables proper and easy use of the thread. This class allows to perform background operations and publish results on the thread without having to manipulate threads and/or handlers. [More information](https://dmamontov.github.io/asynctask).
 
 
 ## Requirements
