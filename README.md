@@ -29,5 +29,5 @@ class TestTask extends AsyncTask
 }
 
 $task = new TestTask();
-$task->execute();
+$task->execute('test');
 ```
