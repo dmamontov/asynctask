@@ -145,8 +145,8 @@ abstract class AsyncTask
      */
     final public static function setProperty($key, $value)
     {
-        if (in_array($name, array('shmId', 'pid', 'ppid', 'status')) === false) {
-            shm_put_var(self::$shmId, self::getUid($name), $value);
+        if (in_array($key, array('shmId', 'pid', 'ppid', 'status')) === false) {
+            shm_put_var(self::$shmId, self::getUid($key), $value);
             return true;
         } else {
             return false;
