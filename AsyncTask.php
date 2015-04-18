@@ -72,6 +72,10 @@ abstract class AsyncTask
      */
     final public function __construct()
     {
+        global $instance;
+
+        $instance++;
+
         $error = "";
         if (version_compare(PHP_VERSION, '5.3.3', '<')) {
             $error .= sprintf(
@@ -93,7 +97,7 @@ abstract class AsyncTask
            );
         }
 
-        self::$shmId = shm_attach(ftok(__FILE__, 'A'));
+        self::$shmId = shm_attach((int) (ftok(__FILE__, 'A') . $instance));
         shm_put_var(self::$shmId, 11511697116117115, 'PENDING');
         shm_put_var(self::$shmId, 112112105100, getmypid());
     }
