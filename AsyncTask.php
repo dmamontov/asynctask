@@ -38,7 +38,7 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @since     File available since Release 1.0.0
+ * @since     File available since Release 1.0.2
  */
 
  /**
@@ -47,9 +47,9 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version   Release: 1.0.0
+ * @version   Release: 1.0.2
  * @link      https://github.com/dmamontov/asynctask
- * @since     Class available since Release 1.0.0
+ * @since     Class available since Release 1.0.2
  * @todo      Planned to write a method publishProgress
  * @abstract
  */
@@ -87,7 +87,7 @@ abstract class AsyncTask
             $error .= "\n\e[0m\e[0;32mAsyncTask uses the extension \"pcntl\",\e[0m";
         }
         if (!extension_loaded('posix')) {
-            $error .= "\nAsyncTask uses the extension \"posix\",";
+            $error .= "\n\e[0m\e[0;32mAsyncTask uses the extension \"posix\",\e[0m";
         }
 
         if (mb_strlen($error) > 0) {
