@@ -1,8 +1,8 @@
 [![Latest Stable Version](https://poser.pugx.org/dmamontov/asynctask/v/stable.svg)](https://packagist.org/packages/dmamontov/asynctask)
 [![License](https://poser.pugx.org/dmamontov/asynctask/license.svg)](https://packagist.org/packages/dmamontov/asynctask)
 
-AsyncTask 1.0.2
-===============
+AsyncTask
+=========
 
 AsyncTask enables proper and easy use of the thread. This class allows to perform background operations and publish results on the thread without having to manipulate threads and/or handlers. [More information](https://dmamontov.github.io/asynctask).
 
