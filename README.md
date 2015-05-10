@@ -22,7 +22,7 @@ AsyncTask enables proper and easy use of the thread. This class allows to perfor
 composer require dmamontov/asynctask ~1.0.2
 ```
 
-In config `composer.json` your project will be added to the library` retailcrm / api-client-php`, who settled in the folder `vendor /`. In the absence of a config file or folder with vendors they will be created.
+In config `composer.json` your project will be added to the library `dmamontov/asynctask`, who settled in the folder `vendor/`. In the absence of a config file or folder with vendors they will be created.
 
 If before your project is not used `composer`, connect the startup file vendors. To do this, enter the code in the project:
 ```php
