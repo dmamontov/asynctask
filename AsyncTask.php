@@ -63,7 +63,6 @@ abstract class AsyncTask
      */
     private static $shmId;
 
-
     /**
      * Creates a new asynchronous task
      * @return void
