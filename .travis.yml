@@ -19,8 +19,6 @@ script: ./vendor/bin/phpunit -c phpunit.xml.dist
 matrix:
   allow_failures:
     - php: hhvm
-    - php: 5.2
-    - php: 5.3.0
 
 notifications:
   email: false
