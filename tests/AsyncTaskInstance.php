@@ -66,6 +66,7 @@ class AsyncTaskInstance extends AsyncTask
         }
 
         self::setProperty('test', $parameters);
+
         sleep(2);
 
         return $parameters;
