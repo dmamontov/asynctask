@@ -65,14 +65,6 @@ class AsyncTaskTest extends PHPUnit_Framework_TestCase
         sleep(2);
         $this->assertEquals('FINISHED', $task->getStatus());
         $task->__destruct();
-
-        $task = new AsyncTaskInstance();
-        $task->execute(null);
-        sleep(1);
-        $task->cancel();
-        sleep(2);
-        $this->assertEquals('CANCELED', $task->getStatus());
-        $task->__destruct();
     }
 
     public function testCanceled()
@@ -80,7 +72,7 @@ class AsyncTaskTest extends PHPUnit_Framework_TestCase
         $task = new AsyncTaskInstance();
         $this->assertFileExists(realpath(__DIR__ . '/../src/AsyncTask.php'));
         if (file_exists(realpath(__DIR__ . '/../src/AsyncTask.php'))) {
-            $shmId = shm_attach((int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 80));
+            $shmId = shm_attach((int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 72));
 
             $task->execute(null);
             sleep(1);
@@ -102,7 +94,7 @@ class AsyncTaskTest extends PHPUnit_Framework_TestCase
         $task = new AsyncTaskInstance();
         $this->assertFileExists(realpath(__DIR__ . '/../src/AsyncTask.php'));
         if (file_exists(realpath(__DIR__ . '/../src/AsyncTask.php'))) {
-            $shmId = shm_attach((int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 102));
+            $shmId = shm_attach((int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 94));
 
             $task->execute('testProperty');
             sleep(1);
@@ -118,7 +110,7 @@ class AsyncTaskTest extends PHPUnit_Framework_TestCase
         $task = new AsyncTaskInstance();
         $this->assertFileExists(realpath(__DIR__ . '/../src/AsyncTask.php'));
         if (file_exists(realpath(__DIR__ . '/../src/AsyncTask.php'))) {
-            $shmId = shm_attach((int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 118));
+            $shmId = shm_attach((int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 110));
 
             $task->execute(100);
             sleep(1);
@@ -135,10 +127,10 @@ class AsyncTaskTest extends PHPUnit_Framework_TestCase
         $this->assertFileExists(realpath(__DIR__ . '/../src/AsyncTask.php'));
         if (file_exists(realpath(__DIR__ . '/../src/AsyncTask.php'))) {
             $taskOne = new AsyncTaskInstance();
-            $tokOne = (int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 137);
+            $tokOne = (int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 129);
 
             $taskTwo = new AsyncTaskInstance();
-            $tokTwo = (int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 140);
+            $tokTwo = (int) (ftok(realpath(__DIR__ . '/../src/AsyncTask.php'), 'A') . 132);
 
             $this->assertNotEquals($tokOne, $tokTwo);
 
