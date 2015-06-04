@@ -41,5 +41,9 @@
  * @since     File available since Release 1.0.3
  */
 
-require __DIR__ . '/../src/AsyncTask.php';
-require 'AsyncTaskInstance.php';
+if (class_exists('AsyncTask') == false) {
+    require __DIR__ . '/../src/AsyncTask.php';
+}
+if (class_exists('AsyncTaskInstance') == false) {
+    require 'AsyncTaskInstance.php';
+}
