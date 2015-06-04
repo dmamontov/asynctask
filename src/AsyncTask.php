@@ -79,6 +79,12 @@ abstract class AsyncTask
     final public function __construct()
     {
         $error = "";
+        if (defined('HHVM_VERSION')) {
+            $error .= sprintf(
+                "\n\e[0m\e[0;32mAsyncTask only officially supports PHP 5.3.3 and above,\e[0m",
+                HHVM_VERSION
+            );
+        }
         if (version_compare(PHP_VERSION, '5.3.3', '<')) {
             $error .= sprintf(
                 "\n\e[0m\e[0;32mAsyncTask only officially supports PHP 5.3.3 and above,\e[0m",

@@ -79,10 +79,10 @@ class AsyncTaskTest extends PHPUnit_Framework_TestCase
             $task->cancel();
             sleep(1);
 
-            if (defined('HHVM_VERSION') === false) {
-                $this->assertTrue(@shm_has_var($shmId, 112105100));
-                $this->assertNull(@shm_get_var($shmId, 112105100));
-            }
+
+            $this->assertTrue(@shm_has_var($shmId, 112105100));
+            $this->assertNull(@shm_get_var($shmId, 112105100));
+
             $this->assertEquals('CANCELED', $task->getStatus());
             $this->assertTrue(@shm_has_var($shmId, 116101115116));
             $this->assertTrue(@shm_get_var($shmId, 116101115116));
