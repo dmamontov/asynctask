@@ -66,7 +66,6 @@ abstract class AsyncTask
     /**
      * The line number in which the object has been initialized
      * @var integer
-     * @static
      */
     private $line;
 
