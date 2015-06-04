@@ -9,7 +9,7 @@ AsyncTask enables proper and easy use of the thread. This class allows to perfor
 
 
 ## Requirements
-* PHP version 5.3.3 or higher
+* PHP version ~5.3.3
 * Module installed pcntl and posix
 * All functions pcntl, posix and shm removed from the directive disable_functions
 
