@@ -99,8 +99,8 @@ abstract class AsyncTask
            );
         }
 
-        $line = reset(debug_backtrace());
-        $this->line = $line['line'];
+        $line = debug_backtrace();
+        $this->line = $line[0]['line'];
 
         self::$shmId = shm_attach((int) (ftok(__FILE__, 'A') . $this->line));
         shm_put_var(self::$shmId, 11511697116117115, 'PENDING');
