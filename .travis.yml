@@ -13,9 +13,5 @@ php:
 
 script: ./vendor/bin/phpunit -c phpunit.xml.dist
 
-matrix:
-  allow_failures:
-    - php: hhvm
-
 notifications:
   email: false
