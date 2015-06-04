@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/dmamontov/asynctask.svg?branch=master)](https://travis-ci.org/dmamontov/asynctask)
 [![Latest Stable Version](https://poser.pugx.org/dmamontov/asynctask/v/stable.svg)](https://packagist.org/packages/dmamontov/asynctask)
 [![License](https://poser.pugx.org/dmamontov/asynctask/license.svg)](https://packagist.org/packages/dmamontov/asynctask)
 [![Total Downloads](https://poser.pugx.org/dmamontov/asynctask/downloads)](https://packagist.org/packages/dmamontov/asynctask)
