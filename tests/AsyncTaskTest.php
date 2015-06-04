@@ -70,7 +70,7 @@ class AsyncTaskTest extends PHPUnit_Framework_TestCase
         $task->execute(null);
         sleep(1);
         $task->cancel();
-        sleep(1);
+        sleep(2);
         $this->assertEquals('CANCELED', $task->getStatus());
         $task->__destruct();
     }
