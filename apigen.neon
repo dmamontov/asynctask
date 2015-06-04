@@ -1,0 +1,27 @@
+extensions:
+    - php
+    
+source:
+    - src
+    
+exclude:
+    - tests/
+    
+charset:
+    - auto
+    - UTF-8
+    - Windows-1251
+    
+title: AsyncTask
+templateTheme: bootstrap
+groups: auto
+accessLevels:
+    - public
+    
+internal: true
+php: false
+tree: false
+deprecated: false
+todo: true
+destination: ../asynctask.pages/
+download: false

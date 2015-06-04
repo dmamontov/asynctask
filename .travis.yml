@@ -1,0 +1,17 @@
+language: php
+
+install:
+  - travis_retry composer install --no-interaction --prefer-source
+
+php:
+  - 5.3.3
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+
+script: ./vendor/bin/phpunit -c phpunit.xml.dist
+
+notifications:
+  email: false

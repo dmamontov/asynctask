@@ -38,37 +38,8 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @since     File available since Release 1.0.2
+ * @since     File available since Release 1.0.3
  */
 
-require 'AsyncTask.php';
-
-class TestTask extends AsyncTask
-{
-    protected function onPreExecute()
-    {
-        self::setProperty("count", 0);
-    }
-
-    protected function doInBackground($parameters)
-    {
-        sleep(2);
-        $count = self::getProperty("count") + $parameters;
-        sleep(1);
-        return $count;
-    }
-
-    protected function onPostExecute($result)
-    {
-        echo $result;
-    }
-}
-
-$task = new TestTask();
-$task->execute(100);
-echo $task->getStatus();
-sleep(10);
-if ($task->getStatus() == 'RUNNING') {
-    $task->cancel();
-}
-echo $task->getStatus();
+require __DIR__ . '/../src/AsyncTask.php';
+require 'AsyncTaskInstance.php';

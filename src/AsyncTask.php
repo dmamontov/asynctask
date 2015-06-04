@@ -38,7 +38,7 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @since     File available since Release 1.0.2
+ * @since     File available since Release 1.0.3
  */
 
  /**
@@ -47,9 +47,9 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version   Release: 1.0.2
+ * @version   Release: 1.0.3
  * @link      https://github.com/dmamontov/asynctask
- * @since     Class available since Release 1.0.2
+ * @since     Class available since Release 1.0.3
  * @todo      Planned to write a method publishProgress
  * @abstract
  */
@@ -64,6 +64,13 @@ abstract class AsyncTask
     private static $shmId;
 
     /**
+     * The line number in which the object has been initialized
+     * @var integer
+     * @static
+     */
+    private $line;
+
+    /**
      * Creates a new asynchronous task
      * @return void
      * @access public
@@ -71,10 +78,6 @@ abstract class AsyncTask
      */
     final public function __construct()
     {
-        global $instance;
-
-        $instance++;
-
         $error = "";
         if (version_compare(PHP_VERSION, '5.3.3', '<')) {
             $error .= sprintf(
@@ -96,7 +99,10 @@ abstract class AsyncTask
            );
         }
 
-        self::$shmId = shm_attach((int) (ftok(__FILE__, 'A') . $instance));
+        $line = reset(debug_backtrace());
+        $this->line = $line['line'];
+
+        self::$shmId = shm_attach((int) (ftok(__FILE__, 'A') . $this->line));
         shm_put_var(self::$shmId, 11511697116117115, 'PENDING');
         shm_put_var(self::$shmId, 112112105100, getmypid());
     }
@@ -187,6 +193,7 @@ abstract class AsyncTask
         if ($pid == -1) {
             exit();
         } elseif (!$pid) {
+            self::$shmId = shm_attach((int) (ftok(__FILE__, 'A') . $this->line));
             shm_put_var(self::$shmId, 112105100, getmypid());
             shm_put_var(self::$shmId, 11511697116117115, 'RUNNING');
 
