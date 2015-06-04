@@ -64,7 +64,9 @@ class AsyncTaskInstance extends AsyncTask
         if (is_int($parameters)) {
             $parameters += self::getProperty('pre');
         }
+
         self::setProperty('test', $parameters);
+
         sleep(2);
 
         return $parameters;
