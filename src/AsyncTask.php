@@ -38,7 +38,7 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @since     File available since Release 1.0.3
+ * @since     File available since Release 1.0.4
  */
 
  /**
@@ -47,9 +47,9 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version   Release: 1.0.3
+ * @version   Release: 1.0.4
  * @link      https://github.com/dmamontov/asynctask
- * @since     Class available since Release 1.0.3
+ * @since     Class available since Release 1.0.4
  * @todo      Planned to write a method publishProgress
  * @abstract
  */
@@ -66,6 +66,7 @@ abstract class AsyncTask
     /**
      * The line number in which the object has been initialized
      * @var integer
+     * @static
      */
     private $line;
 
@@ -78,17 +79,8 @@ abstract class AsyncTask
     final public function __construct()
     {
         $error = "";
-        if (defined('HHVM_VERSION')) {
-            $error .= sprintf(
-                "\n\e[0m\e[0;32mAsyncTask only officially supports PHP 5.3.3 and above,\e[0m",
-                HHVM_VERSION
-            );
-        }
-        if (version_compare(PHP_VERSION, '5.3.3', '<')) {
-            $error .= sprintf(
-                "\n\e[0m\e[0;32mAsyncTask only officially supports PHP 5.3.3 and above,\e[0m",
-                PHP_VERSION
-            );
+        if (version_compare(PHP_VERSION, '5.3.3', '<') || defined('HHVM_VERSION')) {
+            $error .= "\n\e[0m\e[0;32mAsyncTask only officially supports PHP 5.3.3 and above,\e[0m";
         }
         if (!extension_loaded('pcntl')) {
             $error .= "\n\e[0m\e[0;32mAsyncTask uses the extension \"pcntl\",\e[0m";
@@ -132,11 +124,11 @@ abstract class AsyncTask
      * Returns the variable with the given key
      * @param string $key
      * @return mixed
-     * @access public
+     * @access protected
      * @static
      * @final
      */
-    final public static function getProperty($key)
+    final protected static function getProperty($key)
     {
         if (
             in_array($key, array('shmId', 'pid', 'ppid', 'status')) === false &&
@@ -153,11 +145,11 @@ abstract class AsyncTask
      * @param string $key
      * @param string $value
      * @return boolean
-     * @access public
+     * @access protected
      * @static
      * @final
      */
-    final public static function setProperty($key, $value)
+    final protected static function setProperty($key, $value)
     {
         if (in_array($key, array('shmId', 'pid', 'ppid', 'status')) === false) {
             shm_put_var(self::$shmId, self::getUid($key), $value);
