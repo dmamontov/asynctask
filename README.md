@@ -2,6 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/dmamontov/asynctask/v/stable.svg)](https://packagist.org/packages/dmamontov/asynctask)
 [![License](https://poser.pugx.org/dmamontov/asynctask/license.svg)](https://packagist.org/packages/dmamontov/asynctask)
 [![Total Downloads](https://poser.pugx.org/dmamontov/asynctask/downloads)](https://packagist.org/packages/dmamontov/asynctask)
+[![PHP Classes](https://img.shields.io/badge/php-classes-blue.svg)](http://www.phpclasses.org/package/9047-PHP-Execute-asynchronous-tasks-in-the-background.html)
 
 AsyncTask
 =========
