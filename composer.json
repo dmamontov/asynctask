@@ -3,7 +3,7 @@
     "description": "AsyncTask enables proper and easy use of the thread. This class allows to perform background operations and publish results on the thread without having to manipulate threads and/or handlers.",
     "type": "library",
     "keywords": ["task", "background", "asynchronous", "work days"],
-    "version": "1.0.4",
+    "version": "1.0.5",
     "license": "BSD-3-Clause",
     "homepage": "http://www.slobel.ru/",
     "authors": [
@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.3"
     },
     "require-dev": {
         "phpunit/phpunit": "4.6.*"

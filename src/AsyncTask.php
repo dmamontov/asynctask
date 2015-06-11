@@ -38,7 +38,7 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @since     File available since Release 1.0.4
+ * @since     File available since Release 1.0.5
  */
 
  /**
@@ -47,9 +47,9 @@
  * @author    Dmitry Mamontov <d.slonyara@gmail.com>
  * @copyright 2015 Dmitry Mamontov <d.slonyara@gmail.com>
  * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version   Release: 1.0.4
+ * @version   Release: 1.0.5
  * @link      https://github.com/dmamontov/asynctask
- * @since     Class available since Release 1.0.4
+ * @since     Class available since Release 1.0.5
  * @todo      Planned to write a method publishProgress
  * @abstract
  */
@@ -78,7 +78,7 @@ abstract class AsyncTask
      */
     final public function __construct()
     {
-        $error = "";
+        $error = '';
         if (version_compare(PHP_VERSION, '5.3.3', '<') || defined('HHVM_VERSION')) {
             $error .= "\n\e[0m\e[0;32mAsyncTask only officially supports PHP 5.3.3 and above,\e[0m";
         }
@@ -89,7 +89,7 @@ abstract class AsyncTask
             $error .= "\n\e[0m\e[0;32mAsyncTask uses the extension \"posix\",\e[0m";
         }
 
-        if (mb_strlen($error) > 0) {
+        if (empty($error) === false) {
             throw new RuntimeException(
                $error . "\n\e[0m\e[0;32myou will most likely encounter problems with non-installed extensions,"
                       . "\n\e[0;31mupgrading is strongly recommended.\e[0m\n"
@@ -186,6 +186,7 @@ abstract class AsyncTask
      */
     final public function execute($parameters)
     {
+        pcntl_signal(SIGCHLD, SIG_IGN);
         $pid = pcntl_fork();
         if ($pid == -1) {
             exit();
@@ -218,7 +219,7 @@ abstract class AsyncTask
     {
         if (
             @shm_has_var(self::$shmId, 112105100) &&
-            is_null(shm_get_var(self::$shmId, 112105100)) !== null
+            is_null(shm_get_var(self::$shmId, 112105100)) === false
         ) {
             $this->onCancelled();
             posix_kill(shm_get_var(self::$shmId, 112105100), SIGKILL);
