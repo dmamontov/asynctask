@@ -71,6 +71,12 @@ abstract class AsyncTask
     private $line;
 
     /**
+     * The current class file
+     * @var string
+     */
+    private $file;
+
+    /**
      * Creates a new asynchronous task
      * @return void
      * @access public
@@ -99,7 +105,10 @@ abstract class AsyncTask
         $line = debug_backtrace();
         $this->line = $line[0]['line'];
 
-        self::$shmId = shm_attach((int) (ftok(__FILE__, 'A') . $this->line));
+        $reflect =  new \ReflectionClass($this);
+        $this->file =  $reflect->getFileName();
+
+        self::$shmId = shm_attach((int) (ftok($this->file, 'A') . $this->line));
         shm_put_var(self::$shmId, 11511697116117115, 'PENDING');
         shm_put_var(self::$shmId, 112112105100, getmypid());
     }
@@ -191,7 +200,7 @@ abstract class AsyncTask
         if ($pid == -1) {
             exit();
         } elseif (!$pid) {
-            self::$shmId = shm_attach((int) (ftok(__FILE__, 'A') . $this->line));
+            self::$shmId = shm_attach((int) (ftok($this->file, 'A') . $this->line));
             shm_put_var(self::$shmId, 112105100, getmypid());
             shm_put_var(self::$shmId, 11511697116117115, 'RUNNING');
 
